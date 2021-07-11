@@ -5,7 +5,11 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../components/Layout";
 import Button from "../../components/Button";
 
-import { MainStyled, WrapperStyled, MainTitleStyled } from "./MaryKay.styles";
+import {
+  MainStyled,
+  WrapperStyled,
+  MainTitleStyled,
+} from "../../styles/MaryKay.styles";
 import {
   ContainerArticlesStyled,
   ArticleStyled,
@@ -15,14 +19,14 @@ import {
   TitleStyled,
   PriceStyled,
   ParagraphStyled,
-} from "./MaryKay.styles";
+} from "../../styles/MaryKay.styles";
 import {
   ModalStyled,
   ButtonModalStyled,
   ImageModalStyled,
-} from "./MaryKay.styles";
+} from "../../styles/MaryKay.styles";
 
-import { articles } from "./articles";
+import { articles } from "../../config/articles";
 
 export default function MaryKay() {
   const [imageModalUrl, setImageModalUrl] = useState("");

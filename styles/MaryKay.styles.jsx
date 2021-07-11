@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import colors from "../../config/colors";
-import variables from "../../config/variables";
+import colors from "../config/colors";
+import variables from "../config/variables";
 
-import Wrapper from "../../components/Wrapper";
+import Wrapper from "../components/Wrapper";
 
 // Main
 export const MainStyled = styled.main`

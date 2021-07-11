@@ -4,14 +4,14 @@ import Layout from "../components/Layout";
 import Wrapper from "../components/Wrapper";
 import Button from "../components/Button";
 
-import { MainStyled, TitleMainStyled } from "./index.styles";
+import { MainStyled, TitleMainStyled } from "../styles/index.styles";
 import {
   MaryKayStyled,
   ImageMaryKayStyled,
   InfoMaryKayStyled,
   TitleMaryKayStyled,
   DescriptionMaryKayStyled,
-} from "./index.styles";
+} from "../styles/index.styles";
 
 export default function Inicio() {
   return (
