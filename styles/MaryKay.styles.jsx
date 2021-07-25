@@ -17,7 +17,11 @@ export const WrapperStyled = styled(Wrapper)`
 
 // Main Title
 export const MainTitleStyled = styled.h1`
+  padding: 0.5rem 0;
+  margin: 0;
   text-align: center;
+  color: ${colors.pink};
+  background-color: ${colors.white};
 `;
 
 // Articles Container

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 import Layout from "../components/Layout";
 import Wrapper from "../components/Wrapper";
@@ -14,6 +14,7 @@ import {
 } from "../styles/index.styles";
 
 export default function Inicio() {
+  const router = useRouter();
   return (
     <Layout title="Inicio">
       <MainStyled>
@@ -29,9 +30,9 @@ export default function Inicio() {
               <DescriptionMaryKayStyled>
                 Consultora oficial de Mary Kay
               </DescriptionMaryKayStyled>
-              <Link href="/mary-kay">
-                <Button>Ver Catalogo</Button>
-              </Link>
+              <Button onClick={() => router.push("/mary-kay")}>
+                Ver Catalogo
+              </Button>
             </InfoMaryKayStyled>
           </MaryKayStyled>
         </Wrapper>

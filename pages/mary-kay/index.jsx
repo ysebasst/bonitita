@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -26,11 +26,9 @@ import {
   ImageModalStyled,
 } from "../../styles/MaryKay.styles";
 
-import { articles } from "../../config/articles";
-
-export default function MaryKay() {
-  const [imageModalUrl, setImageModalUrl] = useState("");
-  const [imageModalAlt, setImageModalAlt] = useState("");
+export default function MaryKay({ articles }) {
+  const [imageModalUrl, setImageModalUrl] = useState(null);
+  const [imageModalAlt, setImageModalAlt] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   const modalDOM = useRef();
@@ -73,15 +71,30 @@ export default function MaryKay() {
           </ContainerArticlesStyled>
         </WrapperStyled>
       </MainStyled>
-      <ModalStyled show={showModal} ref={modalDOM} onClick={handleModalClick}>
-        <ButtonModalStyled onClick={() => setShowModal(false)}>
-          <FontAwesomeIcon icon={faTimes} />
-        </ButtonModalStyled>
-        <ImageModalStyled
-          src={`/images/${imageModalUrl}`}
-          alt={imageModalAlt}
-        />
-      </ModalStyled>
+      {imageModalUrl && (
+        <ModalStyled show={showModal} ref={modalDOM} onClick={handleModalClick}>
+          <ButtonModalStyled onClick={() => setShowModal(false)}>
+            <FontAwesomeIcon icon={faTimes} />
+          </ButtonModalStyled>
+          <ImageModalStyled
+            src={`/images/${imageModalUrl}`}
+            alt={imageModalAlt}
+          />
+        </ModalStyled>
+      )}
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  let articles = [];
+
+  try {
+    const res = await fetch(`${process.env.baseUrl}/api/articles`);
+    articles = await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+
+  return { props: { articles } };
 }

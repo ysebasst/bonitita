@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-import colors from "../../config/colors";
+import colors from "../config/colors";
 
 export const GlobalStyles = createGlobalStyle`
   html,
@@ -13,21 +13,17 @@ export const GlobalStyles = createGlobalStyle`
     background-color: #ddd;
   }
 
-  a {
-    color: ${colors.blue};
-    text-decoration: none;
-    @media screen and (min-width: 768px){
-      &:hover{
-        text-decoration:underline;
-      }
-    }
+  p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+
+  img {
+    max-width: 100%;
   }
 
   * {
     box-sizing: border-box;
   }
 
-  img {
-    max-width: 100%;
-  }
+  
 `;

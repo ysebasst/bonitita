@@ -1,4 +1,4 @@
-export const articles = [
+const articles = [
   {
     title: "Duos Encantadores",
     price: 23000,
@@ -21,3 +21,7 @@ export const articles = [
     imageUrl: "contorno-ojos-desmaquillante.jpg",
   },
 ];
+
+export default function handler(req, res) {
+  res.status(200).json(articles);
+}

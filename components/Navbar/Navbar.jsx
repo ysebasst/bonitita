@@ -1,37 +1,21 @@
-import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-
-import Wrapper from "../Wrapper";
-import { routes } from "../../config/routes";
 
 import {
   NavbarStyled,
-  WrapperStyled,
-  ToggleStyled,
-  IconStyled,
-  BrandStyled,
-  BackgroundStyled,
-  MenuStyled,
-  ItemStyled,
-  LinkStyled,
+  NavbarWrapper,
+  NavbarButton,
+  NavbarIcon,
+  NavbarLogo,
 } from "./Navbar.styles";
 
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import logo from "../../public/images/logo.png";
+import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
+import NavbarMenu from "./NavbarMenu";
 
-export default function Navbar(props) {
+export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
-  const [urlNow, setUrlNow] = useState({});
-  const menuRef = useRef();
-  const backgroundRef = useRef();
 
   const router = useRouter();
-
-  useEffect(() => {
-    setUrlNow(router);
-  }, [router]);
 
   useEffect(() => {
     if (showMenu) {
@@ -41,54 +25,22 @@ export default function Navbar(props) {
     }
   }, [showMenu]);
 
-  const handleClickMenu = (e) => {
-    if (e.target === menuRef.current || e.target === backgroundRef.current) {
-      setShowMenu(false);
-    }
-  };
-
   return (
     <NavbarStyled>
-      <WrapperStyled>
-        <ToggleStyled
-          role="button"
-          aria-label="button"
-          onClick={() => setShowMenu(!showMenu)}
-        >
-          <IconStyled icon={faBars} />
-        </ToggleStyled>
-        <Link href="/">
-          <BrandStyled>
-            <Image
-              src={logo}
-              alt="logo bonitita express"
-              height={56}
-              width={121.48}
-            />
-          </BrandStyled>
-        </Link>
-        <BackgroundStyled
-          show={showMenu}
-          ref={backgroundRef}
-          onClick={handleClickMenu}
+      <NavbarWrapper>
+        <NavbarButton onClick={() => setShowMenu(!showMenu)}>
+          <NavbarIcon icon={faBars} />
+        </NavbarButton>
+        <NavbarLogo
+          src="/images/logo.png"
+          alt="logo bonitita express"
+          onClick={() => router.push("/")}
         />
-        <MenuStyled show={showMenu} ref={menuRef} onClick={handleClickMenu}>
-          <Wrapper>
-            {routes.map((route, i) => (
-              <ItemStyled key={i}>
-                <Link href={route.url}>
-                  <LinkStyled
-                    pageSelected={urlNow.asPath === route.url}
-                    onClick={() => setShowMenu(false)}
-                  >
-                    {route.name}
-                  </LinkStyled>
-                </Link>
-              </ItemStyled>
-            ))}
-          </Wrapper>
-        </MenuStyled>
-      </WrapperStyled>
+        <NavbarMenu showMenu={showMenu} setShowMenu={setShowMenu} />
+        <NavbarButton onClick={() => {}}>
+          <NavbarIcon icon={faUser} />
+        </NavbarButton>
+      </NavbarWrapper>
     </NavbarStyled>
   );
 }
